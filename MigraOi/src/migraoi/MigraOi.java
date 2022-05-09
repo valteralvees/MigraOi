@@ -4,32 +4,37 @@ import java.util.Scanner;
 public class MigraOi {
 
     public static void main(String[] args) {
-        // TODO code application logic here
-        int ddd; double numeroTelefone;
-        int escolhaMenu=0;
-        ClienteOi cli1 = new ClienteOi();
+        int menu = 0;
+        System.out.println("Operador, digite as seguintes informações do cliente(em ordem e separadas por vírgula)- Nome, DDD, Número Oi, RG");
+        ClienteOi cli1 = new ClienteOi("Hugo Silveira", 81,988395907,9800130);
         Scanner teclado = new Scanner(System.in);
         System.out.println("Bem vindo ao processo eletrônico de migração de operadora - OI");
-        System.out.println("Para localizarmos o seu cadastro, por favor, digite o número do seu DDD:");
-        ddd = teclado.nextInt();
-        System.out.println("Agora, digite os 9 dígitos do seu Oi:");
-        numeroTelefone = teclado.nextDouble();
         
-        if (ddd== cli1.ddd && numeroTelefone == cli1.numeroTelefone){
+        //
+        ClienteOi cli2 = new ClienteOi(cli1.nome,cli1.ddd,cli1.numeroTelefone,cli1.rg);
+        System.out.println(cli2.nome);
+        
+        
+        if (cli1.ddd != 0 && cli1.numeroTelefone != 0){
             System.out.println("Oi, "+cli1.nome+"! Localizamos o seu cadastro aqui. O que você deseja?");
             System.out.println("1- EFETUAR MIGRAÇÃO ");
             System.out.println("2- CONSULTAR STATUS DO NÚMERO");
             System.out.println("3- VERIFICAR SALDO DE RECARGA");
             System.out.println("4- REALIZAR RECARGA");
-            escolhaMenu = teclado.nextInt();
-            switch (escolhaMenu){
+            menu = teclado.nextInt();
+            switch (menu){
                 case 1 -> {
                     System.out.println("1- MIGRAÇÃO DE NÚMERO");
                     System.out.println("Você está prestes a mudar de número. Será gerado um novo número na operadora VIVO, escolhida pela ANATEL para seguir com a operação da Oi na sua região.");
+                    //MÉTODO 1
+                    cli1.trocarParaVivo(cli1.numeroTelefone);
+                    
+                    ClienteOi.migracaoConcluida = true;
+                    
                  }
                 case 2 -> {
                     System.out.println("2- CONSULTA DE STATUS");
-                    if(cli1.situacaoAtivo == true){
+                    if(ClienteOi.situacaoAtivo == true){
                         System.out.println("O seu número está ativo na Oi e disponível para recebr recargas.");
                     }else{
                         System.out.println("Seu número não está mais ativo na Oi. Caso não tenha solicitado a desativação, consulte o atendimento Oi.");
@@ -52,7 +57,8 @@ public class MigraOi {
                         System.out.println("Sua recarga foi efetuada com sucesso!");
                         System.out.println("Seu novo saldo é de R$"+ cli1.saldoRecarga);
                     } else {
-                        cli1.situacaoAtivo = false;
+                        //Atributo de classe
+                        ClienteOi.situacaoAtivo = false;
                         System.out.println("Informações incorretas. Para sua segurança seu número encontra-se INATIVO e deve ser reativado em uma loja Oi.");
                     }
                  }
