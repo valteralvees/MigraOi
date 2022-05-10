@@ -10,7 +10,7 @@ public class MigraOi {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Bem vindo ao processo eletrônico de migração de operadora - OI");
         
-        //
+        //Atribuição por referência
         ClienteOi cli2 = new ClienteOi(cli1.nome,cli1.ddd,cli1.numeroTelefone,cli1.rg);
         System.out.println(cli2.nome);
         

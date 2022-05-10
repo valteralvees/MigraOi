@@ -14,6 +14,7 @@ public class ClienteOi {
     //Método
     long trocarParaVivo (long numeroTelefone){
         Random novoNum = new Random();
+        //Variável local
         long numVivo = novoNum.nextLong(99999999);
         numeroTelefone = numVivo;
         for (int i =0; i<10;i++){
@@ -29,9 +30,9 @@ public class ClienteOi {
     
     //Construtor
     ClienteOi (String passaNome, int passaDdd, long passaNumero,int passaRg){
-        nome = passaNome;
-        ddd = passaDdd;
-        numeroTelefone = passaNumero;
-        rg = passaRg;
+        this.nome = passaNome;
+        this.ddd = passaDdd;
+        this.numeroTelefone = passaNumero;
+        this.rg = passaRg;
     }
 }
